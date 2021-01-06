@@ -50,7 +50,7 @@ class AuthController extends ApiBaseController
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')->accessToken; 
+            $success['token'] =  $user->createToken(env('API_AUTH_TOKEN'))->accessToken; 
             $success['name'] =  $user->name;
    
             return $this->sendResponse($success, 'User login successfully.');
